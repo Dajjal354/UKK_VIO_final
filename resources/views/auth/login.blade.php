@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="flex flex-col sm:justify-center items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-6">
+    <div class="flex flex-col sm:justify-center items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-6 rounded-lg">
         <!-- Responsive Container -->
         <div class="w-full sm:max-w-3xl bg-white shadow-lg rounded-lg p-8">
             <!-- Application Title -->
@@ -61,15 +61,24 @@
         </div>
     </div>
 
+    <video autoplay muted loop id="bg-video">
+        <source src="{{ asset('video/video.org.ketik.mp4') }}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
     <style>
         body {
-            background-image: url('https://www.enago.com/academy/wp-content/uploads/2017/09/Background.jpg');
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 100%;
             margin: 0;
             font-family: 'Roboto', sans-serif;
+        }
+
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
         }
 
         .bg-gradient-to-r {

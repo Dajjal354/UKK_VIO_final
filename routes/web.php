@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -38,10 +40,20 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [AdminController::class, 'profileAdmin'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile', [ProfileController::class, 'store'])->name('user.profile.store');
 });
+
+/*
+Test
+ */
+
+ Route::get('/admin/home', [AdminController::class, 'adminDashboard'])->name('admin.home');
+ Route::get('/auth.login', [AdminController::class, 'ReturnLogin'])->name('auth.login');
+ Route::get('/auth.register', [AdminController::class, 'Register'])->name('auth.register');
+ Route::get('/auth.forgot-password', [AdminController::class, 'ForgetPassword'])->name('auth.forgot-password');
 
 require __DIR__.'/auth.php';
 
