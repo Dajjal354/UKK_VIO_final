@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.userApp')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -30,7 +30,7 @@
             </div>
 
             <div class="margin-10px p-4 sm:p-8 bg-white shadow sm:rounded-lg" style="margin: 10px">
-            <form method="POST" action="{{ route('admin.profile.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
                         @csrf
     
                         @if (session('success'))

@@ -10,7 +10,8 @@ var myPieChart = new Chart(ctx, {
     labels: ["PT", "CV", "UD", "Firma"],
     datasets: [{
       data: [12.21, 15.58, 11.25, 8.32],
-      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#e74a3b'],
     }],
   },
 });
