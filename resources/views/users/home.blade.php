@@ -35,11 +35,18 @@
         </div>
     </div>
 
-    <div class="text-center mt-5">
-        <a href="{{ route('alumni.register')}}" class="btn btn-survey">
-            <i class="fas fa-clipboard-list me-2"></i>Isi Kuisioner Study Tracer
-        </a>
-    </div>
+    @if (Auth::check())
+        <!-- Tombol untuk user yang sudah login -->
+        <div class="text-center mt-5">
+            <a href="{{ route('alumni.register') }}" class="btn btn-primary">Isi Kuesioner</a>
+        </div>
+    @else
+        <!-- Tombol untuk user yang belum login -->
+        <div class="text-center mt-5">
+            <a href="{{ route('login') }}" class="btn btn-primary">Login untuk Isi Kuesioner</a>
+            <a href="{{ route('register') }}" class="btn btn-outline-primary">Register</a>
+        </div>
+    @endif
 
     <!-- Testimonial Section -->
     <div class="testimonial-section">
@@ -55,6 +62,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-card">
                                 <img class="testimonial-avatar" 
+                                
                                      src="{{ $testimonial->alumni->avatar ? '/avatars/' . $testimonial->alumni->avatar : asset('images/Sayang.jpg') }}" 
                                      alt="{{ $testimonial->alumni->name }}'s Avatar">
                                 
@@ -78,41 +86,11 @@
                         </div>
                     @endforelse
                 </div>
-                <div class="swiper-pagination"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
             </div>
         </div>
     </div>
 </div>
-
-<footer class="footer mt-5">
-    <div class="container">
-        <div class="footer-content">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h4>Study Tracer</h4>
-                    <p class="footer-description">Menghubungkan alumni dengan almamater untuk masa depan pendidikan yang lebih baik.</p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h4>Hubungi Kami</h4>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-phone me-2"></i>(021) 1234-5678</li>
-                        <li><i class="fas fa-envelope me-2"></i>info@studytracer.ac.id</li>
-                        <li><i class="fas fa-map-marker-alt me-2"></i>Jl. Pendidikan No. 123, Jakarta</li>
-                    </ul>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h4>Media Sosial</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Study Tracer. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
 @endsection

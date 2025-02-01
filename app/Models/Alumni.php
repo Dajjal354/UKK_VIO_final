@@ -32,7 +32,7 @@ class Alumni extends Authenticatable
     {
         return $this->belongsTo(StatusAlumni::class, 'id_status_alumni');
     }
-
+    
     public function tracerKuliah()
     {
         return $this->hasOne(TracerKuliah::class, 'id_alumni');

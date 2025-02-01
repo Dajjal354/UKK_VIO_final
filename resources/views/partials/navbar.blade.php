@@ -11,6 +11,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
+                        <!-- Link Profil Sekolah untuk semua pengunjung -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('sekolah.show') }}">Profil Sekolah</a>
+                        </li>
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -47,3 +52,4 @@
                 </div>
             </div>
         </nav>
+</header>

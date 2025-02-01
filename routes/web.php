@@ -15,13 +15,13 @@ use App\Http\Controllers\Admin\KonsentrasiKeahlianController;
 use App\Http\Controllers\Admin\TahunLulusController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\AlumniViewController;
+use App\Http\Controllers\Admin\SekolahController;
+use App\Http\Controllers\SekolahController as UserSekolahController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 // Default route redirects to login
-Route::get('/', function () {
-    return view('auth.login');
-})->name('auth.login');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Authentication Routes with Email Verification
 Auth::routes(['verify' => true]);
@@ -45,25 +45,18 @@ Route::group(['middleware' => ['auth']], function() {
 
 // User Routes
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    
-    // Fix the alumni registration routes
-    Route::group(['prefix' => 'alumni'], function () {
+    Route::prefix('alumni')->group(function () {
         Route::get('/register', [AlumniRegisterController::class, 'showRegistrationForm'])->name('alumni.register');
         Route::post('/register', [AlumniRegisterController::class, 'register'])->name('alumni.store');
 
-        // Tracer Kuliah
         Route::get('/tracer/kuliah/{alumni}', [TracerKuliahController::class, 'create'])->name('tracer.kuliah.form');
-    Route::post('/tracer/kuliah/{alumni}', [TracerKuliahController::class, 'store'])->name('tracer.kuliah.store');
-    
-    // Tracer Kerja
-    Route::get('/tracer/kerja/{alumni}', [TracerKerjaController::class, 'create'])->name('tracer.kerja.form');
-    Route::post('/tracer/kerja/{alumni}', [TracerKerjaController::class, 'store'])->name('tracer.kerja.store');
+        Route::post('/tracer/kuliah/{alumni}', [TracerKuliahController::class, 'store'])->name('tracer.kuliah.store');
+        
+        Route::get('/tracer/kerja/{alumni}', [TracerKerjaController::class, 'create'])->name('tracer.kerja.form');
+        Route::post('/tracer/kerja/{alumni}', [TracerKerjaController::class, 'store'])->name('tracer.kerja.store');
 
-    // Testimonial
-    Route::get('{alumni}/testimonial/create', [TestimonialController::class, 'create'])->name('testimonial.create');
-    Route::post('{alumni}/testimonial', [TestimonialController::class, 'store'])->name('testimonial.store');
-    
+        Route::get('{alumni}/testimonial/create', [TestimonialController::class, 'create'])->name('testimonial.create');
+        Route::post('{alumni}/testimonial', [TestimonialController::class, 'store'])->name('testimonial.store');
     });
 
     Route::prefix('profile')->group(function () {
@@ -72,6 +65,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         Route::delete('/', [UserProfileController::class, 'destroy'])->name('profile.destroy');
         Route::post('/', [UserProfileController::class, 'store'])->name('user.profile.store');
     });
+
+    Route::get('/sekolah', [UserSekolahController::class, 'show'])->name('sekolah.show');
 });
 
 // Admin Routes
@@ -79,8 +74,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [AdminController::class, 'adminDashboard'])->name('admin.home');
     Route::prefix('admin/profile')->group(function () {
         Route::get('/', [AdminController::class, 'profileAdmin'])->name('profile.edit');
-        Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::patch('/', [ProfileController::class, 'update'])->name('admin.profile.update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
         Route::post('/', [ProfileController::class, 'store'])->name('admin.profile.store');
         
     });
@@ -93,6 +88,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/api/user-activity', [UserActivityController::class, 'getActivityData']);
     Route::get('/admin/alumni', [AlumniViewController::class, 'index'])->name('alumni.index');
     Route::get('/admin/alumni/{alumni}', [AlumniViewController::class, 'show'])->name('alumni.show');
+    Route::delete('/alumni/{alumni}', [AlumniViewController::class, 'destroy'])->name('alumni.destroy');
+    Route::get('/admin/sekolah', [SekolahController::class, 'index'])->name('admin.sekolah.index');
+    Route::post('/admin/sekolah', [SekolahController::class, 'store'])->name('admin.sekolah.store');
 });
 
 Route::get('/home', [TestimonialController::class, 'getTestimonials'])->name('home');

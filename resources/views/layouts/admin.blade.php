@@ -10,6 +10,8 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Chart.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -29,8 +31,6 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle image-profile" src="/avatars/{{ Auth::user()->avatar }}" style="width: 30px; border-radius: 10%"></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><a class="dropdown-item" href="{{ route('profile.edit')}}">Profile</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><!-- Authentication -->
@@ -99,6 +99,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Data Alumni
                             </a>
+
+                            <a class="nav-link" href="{{ route('admin.sekolah.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-school"></i></div>
+                                Profile Sekolah
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -131,6 +136,7 @@
         <script src="{{ asset('demo/scripts.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <!-- <script src="{{ asset('js/activity-chart.js') }}"></script> -->
+        <script src="{{ asset('js/alumni-status-chart.js') }}"></script>
         <script src="{{ asset('demo/chart-pie-demo.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('demo/datatables-simple-demo.js')}}"></script>

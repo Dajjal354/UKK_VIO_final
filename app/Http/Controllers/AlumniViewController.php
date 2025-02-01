@@ -33,4 +33,31 @@ class AlumniViewController extends Controller
 
         return view('alumni.show', compact('alumni'));
     }
+
+    public function destroy(Alumni $alumni)
+    {
+        try {
+            // Hapus data terkait terlebih dahulu
+            if ($alumni->tracerKuliah) {
+                $alumni->tracerKuliah->delete();
+            }
+            
+            if ($alumni->tracerKerja) {
+                $alumni->tracerKerja->delete();
+            }
+            
+            if ($alumni->testimoni) {
+                $alumni->testimoni->delete();
+            }
+
+            // Hapus data alumni
+            $alumni->delete();
+
+            return redirect()->route('alumni.index')
+                ->with('success', 'Data alumni berhasil dihapus');
+        } catch (\Exception $e) {
+            return redirect()->route('alumni.index')
+                ->with('error', 'Gagal menghapus data alumni');
+        }
+    }
 } 

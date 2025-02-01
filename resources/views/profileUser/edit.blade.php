@@ -11,21 +11,21 @@
             <!-- Update Profile Information Form -->
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg" style="margin: 10px">
                 <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
+                    @include('profileUser.partials.update-profile-information-form')
                 </div>
             </div>
 
             <!-- Add margin for spacing -->
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg" style="margin: 10px">
                 <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
+                    @include('profileUser.partials.update-password-form')
                 </div>
             </div>
 
             <!-- Add margin for spacing -->
             <div class="margin-10px p-4 sm:p-8 bg-white shadow sm:rounded-lg" style="margin: 10px">
                 <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
+                    @include('profileUser.partials.delete-user-form')
                 </div>
             </div>
 

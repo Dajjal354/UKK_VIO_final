@@ -24,16 +24,7 @@
                             <p><strong>No. HP:</strong> {{ $alumni->no_hp }}</p>
                             <p><strong>Email:</strong> {{ $alumni->email }}</p>
                             <p><strong>Tahun Lulus:</strong> {{ $alumni->tahunLulus->tahun_lulus }}</p>
-                            <p><strong>Jurusan:</strong> 
-                                @if($alumni->konsentrasiKeahlian)
-                                    {{ $alumni->konsentrasiKeahlian->nama_konsentrasi_keahlian }}
-                                    @if($alumni->konsentrasiKeahlian->programKeahlian)
-                                        ({{ $alumni->konsentrasiKeahlian->programKeahlian->nama_program_keahlian }})
-                                    @endif
-                                @else
-                                    <span class="text-muted">Data tidak tersedia</span>
-                                @endif
-                            </p>
+                            <p><strong>Jurusan:</strong> {{ $alumni->konsentrasiKeahlian->konsentrasi_keahlian }}</p>
                         </div>
                     </div>
                 </div>

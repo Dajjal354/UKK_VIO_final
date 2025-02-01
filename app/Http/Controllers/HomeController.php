@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
   
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Testimoni;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['index']);
     }
   
     /**
@@ -24,7 +25,12 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        return view('users.home');
+        $testimonials = Testimoni::with('alumni.tahunLulus')
+            ->latest()
+            ->take(3)
+            ->get();
+            
+        return view('users.home', compact('testimonials'));
     } 
   
     /**

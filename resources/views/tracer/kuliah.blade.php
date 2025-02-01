@@ -41,8 +41,8 @@
                     <div class="col-md-6">
                         <select class="form-control" name="tracer_kuliah_linier" required>
                             <option value="">Pilih Linear</option>
-                            <option value="aktif">SMK</option>
-                            <option value="cuti">SMA</option>
+                            <option value="aktif">Linear</option>
+                            <option value="cuti">Tidak Linear</option>
                         </select>
                     </div>
                 </div>
