@@ -58,7 +58,8 @@
             },
         });
     </script>
-  <footer class="footer mt-5">
+</body>
+<footer class="footer mt-5">
     <div class="container">
         <div class="footer-content">
             <div class="row">
@@ -85,9 +86,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Study Tracer. All rights reserved.</p>
+            <p>&copy; 2025 Aliffio💖. All rights reserved.</p>
         </div>
     </div>
 </footer>
-</body>
 </html>

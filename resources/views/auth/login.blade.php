@@ -1,8 +1,7 @@
 <x-guest-layout>
     <!-- Video Background -->
     <video autoplay muted loop id="bg-video" class="fixed right-0 bottom-0 min-w-full min-h-full object-cover -z-10">
-        <source src="{{ asset('video/video.org.ketik.mp4') }}" type="video/mp4">
-        Your browser does not support HTML5 video.
+    <source src="{{ asset('video/video.org.ketik.mp4') }}" type="video/mp4">        Your browser does not support HTML5 video.
     </video>
 
     <div class="min-h-screen flex items-center justify-center relative overflow-hidden py-12 px-4">

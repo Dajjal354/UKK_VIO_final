@@ -67,6 +67,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     });
 
     Route::get('/sekolah', [UserSekolahController::class, 'show'])->name('sekolah.show');
+
+    // Update Password user
+    Route::put('/profile/password', [App\Http\Controllers\Auth\UserPasswordController::class, 'update'])
+    ->name('password.update');
 });
 
 // Admin Routes
@@ -91,6 +95,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::delete('/alumni/{alumni}', [AlumniViewController::class, 'destroy'])->name('alumni.destroy');
     Route::get('/admin/sekolah', [SekolahController::class, 'index'])->name('admin.sekolah.index');
     Route::post('/admin/sekolah', [SekolahController::class, 'store'])->name('admin.sekolah.store');
+
+    // Update Password admin
+    Route::put('admin/password', [App\Http\Controllers\Auth\AdminPasswordController::class, 'update'])
+        ->name('admin.password.update');
 });
 
 Route::get('/home', [TestimonialController::class, 'getTestimonials'])->name('home');

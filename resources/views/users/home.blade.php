@@ -38,7 +38,7 @@
     @if (Auth::check())
         <!-- Tombol untuk user yang sudah login -->
         <div class="text-center mt-5">
-            <a href="{{ route('alumni.register') }}" class="btn btn-primary">Isi Kuesioner</a>
+            <a href="{{ route('alumni.register') }}" class="btn btn-primary">Isi Kuesioner 📖</a>
         </div>
     @else
         <!-- Tombol untuk user yang belum login -->
